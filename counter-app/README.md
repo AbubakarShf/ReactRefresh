@@ -1,1 +1,1 @@
-#Counter-App using class and function components.
+# Counter-App using class and function components.
