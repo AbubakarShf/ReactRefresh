@@ -1,11 +1,35 @@
 import React from 'react'
 
-function Recipe({ id, name }) {
+import IngredientList from './IngredientList'
+
+function Recipe({ id, name, servings, cookTime, Instructions, Ingredients }) {
   return (
-    <div>
-      <h1>{id}</h1>
-      <h1>{name}</h1>
-    </div>
+    <React.Fragment>
+      <div>
+        <h1>{name}</h1>
+        <div>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      </div>
+      <div>
+        <span>
+          Cook Time: <br /> {cookTime}
+        </span>
+
+        <span>
+          Servings: <br /> {servings}
+        </span>
+        <span>
+          Instructions: <br /> {Instructions}
+        </span>
+        <br />
+        <span>
+          Ingredients: <br />
+        </span>
+        <IngredientList ingredient={Ingredients} />
+      </div>
+    </React.Fragment>
   )
 }
 
