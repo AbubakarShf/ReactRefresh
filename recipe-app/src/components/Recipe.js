@@ -3,14 +3,27 @@ import React from 'react'
 import IngredientList from './IngredientList'
 import '../components/css/Recipe.css'
 
-function Recipe({ id, name, servings, cookTime, Instructions, Ingredients }) {
+function Recipe({
+  id,
+  name,
+  servings,
+  cookTime,
+  Instructions,
+  Ingredients,
+  delRecipeHandler,
+}) {
   return (
     <div className="recipe">
       <div className="recipe__header">
         <h1 className="recipe__title">{name}</h1>
         <div className="recipe__btn_container">
           <button className="btn btn-primary  mr-1">Edit</button>
-          <button className="btn btn-danger">Delete</button>
+          <button
+            onClick={() => delRecipeHandler(id)}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
         </div>
       </div>
 
