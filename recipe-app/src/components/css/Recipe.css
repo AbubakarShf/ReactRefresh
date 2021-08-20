@@ -1,0 +1,37 @@
+.recipe {
+    padding: 30px;
+    border-bottom: 2px solid black;
+}
+
+.recipe:last-child {
+    border: none;
+    padding-bottom: 10px;
+}
+
+.recipe__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.recipe-label {
+    margin-right: 5px;
+}
+
+.recipe-value {
+    font-weight: 300;
+}
+
+.recipe__title {
+    margin: 0px;
+    font-size: 1.7rem;
+}
+
+.recipe-instructions {
+    white-space: pre-wrap;
+}
+
+.recipe_value--identied {
+    margin-left: 20px;
+}
