@@ -1,11 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { v4 as uuid } from 'uuid'
 import RecipeList from './RecipeList'
 import '../components/css/app.css'
 
+//Context Api
+export const RecipeContext = React.createContext()
+const LOCAL_STORAGE_KEY = 'CookingWithReact.Recipe'
 const App = () => {
   const [recipe, setRecipes] = useState(sampleRecipes)
+  //Get Object from LocalStorage
+  useEffect(() => {
+    const localStorageRecipes = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if (localStorageRecipes != null) {
+      setRecipes(JSON.parse(localStorageRecipes))
+    }
+  }, [])
+
+  //Insert Object in LocalStorage
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipe))
+  }, [recipe])
+
   // Add Recipe Function
   const addRecipeHandler = () => {
     const newRecipe = {
@@ -17,7 +33,6 @@ const App = () => {
       Ingredients: [{ id: uuid(), name: 'salt', amount: '1Tbs' }],
     }
     setRecipes([...recipe, newRecipe])
-    console.log(newRecipe)
   }
   //Delete Recipe Function
   const delRecipeHandler = (Id) => {
@@ -28,14 +43,18 @@ const App = () => {
     )
   }
 
+  //RecipeContext Value
+  const RecipeContextValue = {
+    addRecipeHandler,
+    delRecipeHandler,
+  }
+
   return (
-    <div>
-      <RecipeList
-        recipes={recipe}
-        addRecipeHandler={addRecipeHandler}
-        delRecipeHandler={delRecipeHandler}
-      />
-    </div>
+    <React.Fragment>
+      <RecipeContext.Provider value={RecipeContextValue}>
+        <RecipeList recipes={recipe} />
+      </RecipeContext.Provider>
+    </React.Fragment>
   )
 }
 
