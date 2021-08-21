@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { v4 as uuid } from 'uuid'
 import RecipeList from './RecipeList'
+import RecipeEdit from './RecipeEdit'
 import '../components/css/app.css'
 
 //Context Api
@@ -26,10 +27,10 @@ const App = () => {
   const addRecipeHandler = () => {
     const newRecipe = {
       id: uuid(),
-      name: 'new dish',
+      name: 'New Dish',
       servings: 1,
       cookTime: '1:00',
-      Instructions: '1.Add Something',
+      Instructions: '1.Add Something here',
       Ingredients: [{ id: uuid(), name: 'salt', amount: '1Tbs' }],
     }
     setRecipes([...recipe, newRecipe])
@@ -53,6 +54,7 @@ const App = () => {
     <React.Fragment>
       <RecipeContext.Provider value={RecipeContextValue}>
         <RecipeList recipes={recipe} />
+        <RecipeEdit />
       </RecipeContext.Provider>
     </React.Fragment>
   )

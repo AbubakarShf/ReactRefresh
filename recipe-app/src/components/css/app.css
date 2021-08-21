@@ -4,10 +4,12 @@
 @import url(./Recipe.css);
 @import url(./buttons.css);
 @import url(./ingridient-list.css);
+@import url(./RecipeEdit.css);
 *,
 *::before,
 *::after {
     font-family: GothamRounded, sans-serif;
+    box-sizing: border-box;
 }
 
 body {
